@@ -49,8 +49,7 @@ class Constants:
     # Env variables used in evaluation results data extraction
     ENV_PROGRESS_FILE_PATH = 'PROGRESS_FILE_PATH'
     ENV_EVALUATION_RESULTS_DIR_PATH = 'EVALUATION_RESULTS_FILE_PATH'
-    # LOGS_DIRECTORY = '/tensorboard_logs'
-    LOGS_DIRECTORY = "/home/peter/Programowanie/Magisterka/StableBaselinesRunner/temp"
+    LOGS_DIRECTORY = '/tensorboard_logs'
     LOGGER_NAME = 'rllib_runner_logger'
 
     # Indexes for values in Humanoid-v2 state vector

@@ -12,7 +12,21 @@ from tqdm.auto import tqdm
 
 from src.Constants import Constants
 
-"%d/%m/%Y %H:%M:%S"
+sac_config = {
+    "policy": "MlpPolicy",
+    "learning_rate": 0.0003,
+    "buffer_size": int(1e6),
+    "learning_starts": 10_000,
+    "batch_size": 64,
+    "tau": 0.005,
+    "gamma": 0.99,
+    "train_freq": 256,
+    "gradient_steps": 1,
+    "policy_kwargs": {
+        "activation_fn": torch.nn.Tanh,
+        "net_arch": [256, 256]
+    }
+}
 
 
 def get_run_name(algorithm: str, environment: str) -> str:
@@ -35,7 +49,6 @@ def make_env(env_id, rank, seed=0):
     Utility function for multiprocessed env.
 
     :param env_id: (str) the environment ID
-    :param num_env: (int) the number of environments you wish to have in subprocesses
     :param seed: (int) the inital seed for RNG
     :param rank: (int) index of the subprocess
     """
@@ -83,14 +96,16 @@ class CustomEvalCallback(EvalCallback):
 
     def _on_step(self):
         if self.eval_freq > 0 and self.n_calls % self.eval_freq == 0:
-            self._used_std.append(self.model.actor._last_used_log_std)
-            self.logger.record('last_used_log_std', self.model.actor._last_used_log_std)
+            if self.model.actor._last_used_log_std is not None:
+                std = np.power(10, self.model.actor._last_used_log_std)
+                self._used_std.append(std)
+                self.logger.record('last_used_std', std)
 
-            return super(CustomEvalCallback, self)._on_step()
+        return super(CustomEvalCallback, self)._on_step()
 
 
 if __name__ == '__main__':
-    env_id = "Pendulum-v1"
+    env_id = "Humanoid-v2"
     algorithm = "SAC"
     num_cpu = 4  # Number of processes to use
     env = SubprocVecEnv([make_env(env_id, i) for i in range(num_cpu)])
@@ -99,13 +114,11 @@ if __name__ == '__main__':
     tensorboard_log = get_tensorboard_logs_directory(algorithm)
 
     # dd/mm/YY
-    policy_kwargs = dict(activation_fn=torch.nn.Tanh, net_arch=[256, 256])
     eval_callback = CustomEvalCallback(eval_env, n_eval_episodes=10, eval_freq=1000, deterministic=True, verbose=True)
 
     print(type(eval_callback))
-    model = SAC('MlpPolicy', env=env, policy_kwargs=policy_kwargs, verbose=False, device="cuda",
-                tensorboard_log=tensorboard_log)
-    model.learn(total_timesteps=1e5, callback=[eval_callback, TqdmCallback()],
+    model = SAC(env=env, tensorboard_log=tensorboard_log, verbose=False, device="cuda", **sac_config)
+    model.learn(total_timesteps=int(5e6), callback=[eval_callback, TqdmCallback()],
                 tb_log_name=get_run_name(algorithm=algorithm, environment=env_id))
 
     used_stds = np.power((np.ones_like(eval_callback._used_std) * 10), eval_callback._used_std)
