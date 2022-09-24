@@ -2,10 +2,15 @@ import numpy as np
 from stable_baselines3.common.callbacks import EvalCallback
 
 
+# Usefull link about evaluating models
+# https://github.com/hill-a/stable-baselines/issues/376
+
+
 class CustomEvalCallback(EvalCallback):
     """
     Callback used for evaluating and reporting a trial.
     """
+
     def __init__(self, eval_env, n_eval_episodes=10,
                  eval_freq=10000, deterministic=True, verbose=0):
         super(CustomEvalCallback, self).__init__(eval_env=eval_env, n_eval_episodes=n_eval_episodes,
