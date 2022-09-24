@@ -17,7 +17,7 @@ class Constants:
     ENV_EVALUATION_RESULTS_DIR_PATH = 'EVALUATION_RESULTS_FILE_PATH'
     LOGS_DIRECTORY = '/tensorboard_logs'
 
-    LOG_FORMAT = '%(asctime)s- %(message)s'
+    LOG_FORMAT = '%(asctime)s - %(message)s'
     LOGGER_NAME = 'rllib_runner_logger'
 
     # Indexes for values in Humanoid-v2 state vector
