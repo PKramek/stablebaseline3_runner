@@ -10,6 +10,11 @@ class Constants:
         "tanh": torch.nn.Tanh
     }
 
+    ENVIRONMENTS_WITH_REWARD_SHAPING = [
+        "Humanoid-v2",
+        "MountainCarContinuous-v0",
+    ]
+
     RANDOM_ID_LENGTH = 6
 
     # Env variables used in evaluation results data extraction
@@ -18,7 +23,7 @@ class Constants:
     LOGS_DIRECTORY = '/tensorboard_logs'
 
     LOG_FORMAT = '%(asctime)s - %(message)s'
-    LOGGER_NAME = 'rllib_runner_logger'
+    LOGGER_NAME = 'stablebaselines3_runner_logger'
 
     # Indexes for values in Humanoid-v2 state vector
     HEIGHT_INDEX = 0
