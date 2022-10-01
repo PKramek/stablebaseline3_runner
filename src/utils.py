@@ -29,19 +29,3 @@ def get_experiment_tb_directory(tensorboard_logs_directory: str, run_name: str):
     return f"{tensorboard_logs_directory}/{run_name}"
 
 
-def make_env(env_id, rank, seed=0):
-    """
-    Utility function for multiprocessed env.
-
-    :param env_id: (str) the environment ID
-    :param seed: (int) the inital seed for RNG
-    :param rank: (int) index of the subprocess
-    """
-
-    def _init():
-        env = gym.make(env_id)
-        env.seed(seed + rank)
-        return env
-
-    set_random_seed(seed)
-    return _init

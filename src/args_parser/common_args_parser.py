@@ -10,11 +10,13 @@ class GeneralConfigArgumentsParser:
         self.parser.add_argument('--algo', type=str, help='Algorithm to be used', required=True,
                                  choices=Constants.ALGORITHMS.keys())
         self.parser.add_argument('--env', type=str, help='OpenAI Gym environment name', default="Humanoid-v2")
+        self.parser.add_argument('--eval_env', type=str, help='OpenAI Gym environment name', default="Humanoid-v2")
         self.parser.add_argument('--num_parallel_envs', type=int, help='Number of CPU cores to use', required=True)
         self.parser.add_argument('--max_timesteps', type=int, help='Maximum number of timesteps', required=True)
 
     def parse_known_args(self, args: List[str] = None, namespace: Union[None, argparse.Namespace] = None):
         return self.parser.parse_known_args(args=args, namespace=namespace)
+
 
 class CommonArgumentsParser:
     def __init__(self):
