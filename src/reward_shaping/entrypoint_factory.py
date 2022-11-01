@@ -3,14 +3,16 @@ from typing import Type
 from src.reward_shaping.entrypoint_creator import (
     HumanoidRewardShapingEntrypointCreator,
     MountainCarContinuousRewardShapingEntrypointCreator,
-    RewardShapingEntrypointCreatorBase
+    RewardShapingEntrypointCreatorBase,
+    PyBulletHumanoidRewardShapingEntrypointCreator
 )
 
 
 class RewardShapingEntrypointCreatorFactory:
     ENTRYPOINT_MAPPING = {
         "Humanoid-v2": HumanoidRewardShapingEntrypointCreator,
-        "MountainCarContinuous-v0": MountainCarContinuousRewardShapingEntrypointCreator
+        "MountainCarContinuous-v0": MountainCarContinuousRewardShapingEntrypointCreator,
+        "HumanoidBulletEnv-v0": PyBulletHumanoidRewardShapingEntrypointCreator
     }
 
     @staticmethod

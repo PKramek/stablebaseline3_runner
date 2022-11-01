@@ -1,9 +1,13 @@
-from src.reward_shaping.fi.t_student_based import TStudentHeightLowPenaltyShiftedFiveHundred
+from src.reward_shaping.fi.t_student_based import TStudentHeightLowPenaltyShiftedFiveHundred, \
+    PyBulletTStudentHeightLowPenaltyShiftedFiveHundred, LinearShiftedFiveHundred, PyBulletLinearShiftedFiveHundred
 
 
 class FiFactory:
     FI_MAPPING = {
         "tStudentFromSeminary": TStudentHeightLowPenaltyShiftedFiveHundred,
+        "tStudentFromSeminaryPyBullet": PyBulletTStudentHeightLowPenaltyShiftedFiveHundred,
+        "linearSameScaleAsFromSeminary": LinearShiftedFiveHundred,
+        "linearSameScaleAsFromSeminaryPyBullet": PyBulletLinearShiftedFiveHundred,
     }
 
     @staticmethod

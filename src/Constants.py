@@ -12,6 +12,7 @@ class Constants:
 
     ENVIRONMENTS_WITH_REWARD_SHAPING = [
         "Humanoid-v2",
+        "HumanoidBulletEnv-v0",
         "MountainCarContinuous-v0",
     ]
 
@@ -29,7 +30,10 @@ class Constants:
     HEIGHT_INDEX = 0
     TILT_INDEX = 3  # In qpos its under index 5, but observation cuts first two elements
     X_AXIS_ROTATION_INDEX = 4  # In qpos its under index 6, but observation cuts first two elements
+    PYBULLET_HEIGHT_INDEX = 0
 
     HEIGHT_NOMINAL_VALUE = 1.4
     TILT_NOMINAL_VALUE = 0.1
     X_AXIS_ROTATION_NOMINAL_VALUE = 0.0
+
+    PYBULLET_HEIGHT_NOMINAL_VALUE = 0.6

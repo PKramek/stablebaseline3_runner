@@ -83,3 +83,13 @@ class MountainCarContinuousRewardShapingEntrypointCreator(RewardShapingEntrypoin
     @property
     def initial_fi_value(self) -> float:
         return self._fi([0])
+
+
+class PyBulletHumanoidRewardShapingEntrypointCreator(RewardShapingEntrypointCreatorBase):
+    @property
+    def base_env_name(self) -> str:
+        return "HumanoidBulletEnv-v0"
+
+    @property
+    def initial_fi_value(self) -> float:
+        return self._fi([0])
