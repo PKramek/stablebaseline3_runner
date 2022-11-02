@@ -31,6 +31,7 @@ protobuf==3.19.5
 psutil==5.9.2
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
+pybullet==2.6.6
 pyglet==1.5.26
 pyparsing==3.0.9
 python-dateutil==2.8.2

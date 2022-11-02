@@ -2,6 +2,8 @@ import logging
 import warnings
 
 import gym
+# noinspection PyUnresolvedReferences
+import pybullet
 from stable_baselines3.common.callbacks import EvalCallback
 from stable_baselines3.common.utils import set_random_seed
 from stable_baselines3.common.vec_env import SubprocVecEnv
