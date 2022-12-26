@@ -1,10 +1,12 @@
 from src.reward_shaping.fi.t_student_based import TStudentHeightLowPenaltyShiftedFiveHundred, \
-    PyBulletTStudentHeightLowPenaltyShiftedFiveHundred, LinearShiftedFiveHundred, PyBulletLinearShiftedFiveHundred
+    PyBulletTStudentHeightLowPenaltyShiftedFiveHundred, TStudentHeightLowPenaltyNotShifted, LinearShiftedFiveHundred, PyBulletLinearShiftedFiveHundred
 
 
 class FiFactory:
     FI_MAPPING = {
         "tStudentFromSeminary": TStudentHeightLowPenaltyShiftedFiveHundred,
+        "tStudentFromSeminaryNotShifted": TStudentHeightLowPenaltyNotShifted,
+        "tStudentFromSeminaryNotShifted": TStudentHeightLowPenaltyNotShifted,
         "tStudentFromSeminaryPyBullet": PyBulletTStudentHeightLowPenaltyShiftedFiveHundred,
         "linearSameScaleAsFromSeminary": LinearShiftedFiveHundred,
         "linearSameScaleAsFromSeminaryPyBullet": PyBulletLinearShiftedFiveHundred,
