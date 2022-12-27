@@ -31,6 +31,12 @@ class TStudentHeightLowPenaltyNotShifted(Fi):
 
         return 10 * t.pdf(state[index], df=degree_of_freedom, scale=scale, loc=middle_of_dist)
 
+
+class JustFiveHundred(Fi):
+
+    def __call__(self, state: np.ndarray):
+        return 500.0
+
 class TStudentHeightLowPenaltyBigDifferences(Fi):
     def __call__(self, state: np.ndarray):
         return self._base_penalty(state)
@@ -47,6 +53,20 @@ class TStudentHeightLowPenaltyBigDifferences(Fi):
 class TStudentHeightLowPenaltyMediumDifferences(Fi):
     def __call__(self, state: np.ndarray):
         return self._base_penalty(state)
+
+    def _base_penalty(self, state: np.ndarray):
+        index = Constants.HEIGHT_INDEX
+        middle_of_dist = Constants.HEIGHT_NOMINAL_VALUE
+
+        degree_of_freedom = 0.01
+        scale = 0.35
+
+        return 25 * t.pdf(state[index], df=degree_of_freedom, scale=scale, loc=middle_of_dist)
+
+
+class TStudentHeightLowPenaltyMediumDifferencesShifted(Fi):
+    def __call__(self, state: np.ndarray):
+        return self._base_penalty(state) + 250.0
 
     def _base_penalty(self, state: np.ndarray):
         index = Constants.HEIGHT_INDEX

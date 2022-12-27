@@ -1,6 +1,7 @@
 from src.reward_shaping.fi.t_student_based import TStudentHeightLowPenaltyShiftedFiveHundred, \
     PyBulletTStudentHeightLowPenaltyShiftedFiveHundred, TStudentHeightLowPenaltyNotShifted, LinearShiftedFiveHundred, \
-    PyBulletLinearShiftedFiveHundred, TStudentHeightLowPenaltyBigDifferences, TStudentHeightLowPenaltyMediumDifferences
+    PyBulletLinearShiftedFiveHundred, TStudentHeightLowPenaltyBigDifferences, TStudentHeightLowPenaltyMediumDifferences, \
+    JustFiveHundred, TStudentHeightLowPenaltyMediumDifferencesShifted
 
 
 class FiFactory:
@@ -8,9 +9,11 @@ class FiFactory:
         "tStudentFromSeminary": TStudentHeightLowPenaltyShiftedFiveHundred,
         "tStudentFromSeminaryNotShifted": TStudentHeightLowPenaltyNotShifted,
         "tStudentFromSeminaryMediumDifferences": TStudentHeightLowPenaltyMediumDifferences,
+        "tStudentFromSeminaryMediumDifferencesShifted": TStudentHeightLowPenaltyMediumDifferencesShifted,
         "tStudentFromSeminaryBigDifferences": TStudentHeightLowPenaltyBigDifferences,
         "tStudentFromSeminaryPyBullet": PyBulletTStudentHeightLowPenaltyShiftedFiveHundred,
         "linearSameScaleAsFromSeminary": LinearShiftedFiveHundred,
+        "JustFiveHundred": JustFiveHundred,
         "linearSameScaleAsFromSeminaryPyBullet": PyBulletLinearShiftedFiveHundred,
     }
 
